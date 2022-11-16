@@ -33,3 +33,12 @@ jobs:
       - name: Validating Terraform live modules
         run: |
           make validate
+      - name: Generating Terraform live modules plans
+        run: |
+          make plan
+      - name: Applying Terraform live modules plans
+        run: |
+          make apply
+      - name: Destroying Terraform live modules
+        run: |
+          make destroy
