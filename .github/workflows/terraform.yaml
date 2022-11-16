@@ -10,6 +10,13 @@ jobs:
   terraform:
     name: Check and validate Terraform live modules
     runs-on: 'ubuntu-latest'
+
+    services:
+      moto:
+        image: motoserver/moto:4.0.9
+        ports:
+          - 4566:5000
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
