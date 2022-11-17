@@ -43,7 +43,7 @@ plan: validate
 		done
 
 apply: validate
-	@echo "Apply Terraform live modules plans"
+	@echo "Applying Terraform live modules plans"
 	@set -e; \
 	find . -type f -not -path '*/.*' -name 'main.tf' | \
 		while IFS= read file; do \
