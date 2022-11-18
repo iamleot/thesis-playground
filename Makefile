@@ -42,22 +42,14 @@ plan: validate
 			$(TERRAFORM) -chdir="$${dirname}" plan; \
 		done
 
-apply: validate
-	@echo "Applying Terraform live modules plans"
+apply-and-destroy: validate
+	@echo "Applying and destroying Terraform live modules plans"
 	@set -e; \
 	find . -type f -not -path '*/.*' -name 'main.tf' | \
 		while IFS= read file; do \
 			dirname=$$(dirname $$file); \
 			echo "Applying plan for $${dirname}"; \
 			$(TERRAFORM) -chdir="$${dirname}" apply -auto-approve; \
-		done
-
-destroy:
-	@echo "Destroying Terraform live modules"
-	@set -e; \
-	find . -type f -not -path '*/.*' -name 'main.tf' | \
-		while IFS= read file; do \
-			dirname=$$(dirname $$file); \
 			echo "Destroying for $${dirname}"; \
 			$(TERRAFORM) -chdir="$${dirname}" apply -destroy \
 				-auto-approve; \

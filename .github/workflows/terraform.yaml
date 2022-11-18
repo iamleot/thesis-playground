@@ -36,9 +36,6 @@ jobs:
       - name: Generating Terraform live modules plans
         run: |
           make plan
-      - name: Applying Terraform live modules plans
+      - name: Applying and destroying Terraform live modules plans
         run: |
-          make apply
-      - name: Destroying Terraform live modules
-        run: |
-          make destroy
+          make apply-and-destroy
