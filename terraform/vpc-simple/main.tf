@@ -3,8 +3,10 @@ terraform {
 
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
+      source = "hashicorp/aws"
+      # XXX: 4.40.0 triggers `describe_security_group_rules' action calls not
+      # XXX: yet supported by moto-4.0.9.
+      version = ">= 4.0, < 4.40.0"
     }
   }
 }
