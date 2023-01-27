@@ -13,7 +13,7 @@ jobs:
 
     services:
       moto:
-        image: motoserver/moto:4.0.11
+        image: motoserver/moto:4.1.2
         ports:
           - 4566:5000
 
