@@ -11,15 +11,19 @@ jobs:
     name: Check and validate Terraform live modules
     runs-on: 'ubuntu-latest'
 
-    services:
-      moto:
-        image: motoserver/moto:4.1.2
-        ports:
-          - 4566:5000
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Start moto container
+        run: |
+          docker run --detach --name moto --publish 4566:5000 --rm motoserver/moto:4.1.2
+      - name: Wait for moto container to be ready
+        timeout-minutes: 1
+        run: |
+          while ! curl --fail --silent http://localhost:4566/moto-api/ > /dev/null ; do
+            echo "Waiting for moto container to be ready..."
+            sleep 2
+          done
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
@@ -39,3 +43,7 @@ jobs:
       - name: Applying and destroying Terraform live modules plans
         run: |
           make apply-and-destroy
+      - name: Stop moto container
+        if: always()
+        run: |
+          docker stop moto
