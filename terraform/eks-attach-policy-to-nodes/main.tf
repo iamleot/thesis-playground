@@ -109,8 +109,6 @@ module "vpc" {
 # XXX: Kubernetes service account can do such actions.
 #
 resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
-  # FIXME: This should be the node group IAM role name, not the cluster role
-  # FIXME: name! But we need to create nodes in order to be able to do that!
-  role       = module.eks.cluster_iam_role_name
+  role       = module.eks.self_managed_node_groups["eks_attach_policy_to_nodes"].iam_role_name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
