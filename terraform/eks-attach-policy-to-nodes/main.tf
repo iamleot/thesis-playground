@@ -50,7 +50,7 @@ provider "aws" {
 
 locals {
   cluster_name    = "eks-attach-policy-to-nodes"
-  cluster_version = "1.23"
+  cluster_version = "1.24"
 }
 
 module "eks" {
