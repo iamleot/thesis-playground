@@ -3,7 +3,6 @@
 Playground for master thesis containing code, documentation and examples to
 explore policy as code.
 
-
 ## Terraform
 
 In `terraform` directory there are several
@@ -25,8 +24,9 @@ This starts the container and print the container ID
 (`c48475b85c7708f218486e25bc8658281ec1ff2e0a01c0729764d71f3fdb2463`) to
 the standard output.
 
-Once Moto is running `terraform plan`, `terraform apply` and `terraform
-destroy` can be performed on the various Terraform live modules.
+Once Moto is running `terraform plan`, `terraform apply` and
+`terraform destroy` can be performed on the various Terraform live
+modules.
 
 A `Makefile` is provided to ease CI (continuous integration) checking
 and linting Terraform code and recursively create and destroy
@@ -42,7 +42,6 @@ container ID is
 ```
 $ docker stop c48475b85c7708f218486e25bc8658281ec1ff2e0a01c0729764d71f3fdb2463
 ```
-
 
 **WARNING**: all code/documentation/examples/etc. here will be probably
 in an eternal POC/WIP state. Reader beware!
