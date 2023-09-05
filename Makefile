@@ -1,6 +1,7 @@
 .POSIX:
 
 TERRAFORM = terraform
+TFLINT = tflint
 
 all:
 
@@ -11,6 +12,16 @@ check-fmt:
 fmt:
 	@echo "Formatting Terraform code"
 	@$(TERRAFORM) fmt -recursive
+
+tflint:
+	@echo "Linting Terraform live modules via tflint"
+	@set -e; \
+	find . -type f -not -path '*/.*' -name 'main.tf' | \
+		while IFS= read file; do \
+			dirname=$$(dirname $$file); \
+			echo "Linting $${dirname}"; \
+			$(TFLINT) --chdir="$${dirname}"; \
+		done
 
 init:
 	@echo "Initializing Terraform live modules"
