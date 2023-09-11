@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Start moto container
         run: |
           docker run --detach --name moto --publish 4566:5000 --volume "${PWD}/config/amis.json:/amis.json" --env MOTO_AMIS_PATH=/amis.json --rm motoserver/moto:4.1.2
