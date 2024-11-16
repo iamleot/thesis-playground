@@ -1,6 +1,6 @@
 .POSIX:
 
-TERRAFORM = terraform
+TERRAFORM = tofu
 TFLINT = tflint
 
 all:
