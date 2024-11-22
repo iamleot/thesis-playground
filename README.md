@@ -8,7 +8,7 @@ explore policy as code.
 In `terraform` directory there are several
 [Terraform](https://www.terraform.io/) live modules with several
 [AWS](https://aws.amazon.com/) infrastructure scenarios. All the code
-is intended to be run by using [Moto](https://github.com/spulec/moto)
+is intended to be run by using [Moto](https://github.com/getmoto/moto)
 that mocks AWS services and should be enough to create Terraform plans,
 applying them and destroying them.
 
