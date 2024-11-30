@@ -17,6 +17,11 @@ import input as tfstate
 # METADATA
 # description: |
 #  Walk the Terraform state and flatten all Terraform resources.
+#
+#  Please note that the Terraform resources in the state can be Terraform
+#  `resource` or `data` based on their `kind`:
+#   - `resource`: the resource of kind "managed"
+#   - `data`: the data resource of kind "data"
 # scope: rule
 resources contains resource if {
 	[_, value] := walk(tfstate)
