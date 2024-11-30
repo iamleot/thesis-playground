@@ -32,21 +32,27 @@ jobs:
         uses: terraform-linters/setup-tflint@v4
       - name: Checking Terraform formatting style
         run: |
+          cd terraform
           make check-fmt
       - name: Linting Terraform live modules
         run: |
+          cd terraform
           make tflint
       - name: Initializing Terraform live modules
         run: |
+          cd terraform
           make init
       - name: Validating Terraform live modules
         run: |
+          cd terraform
           make validate
       - name: Generating Terraform live modules plans
         run: |
+          cd terraform
           make plan
       - name: Applying and destroying Terraform live modules plans
         run: |
+          cd terraform
           make apply-and-destroy
       - name: Stop moto container
         if: always()
