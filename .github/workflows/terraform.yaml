@@ -30,6 +30,8 @@ jobs:
           tofu_version: 1.8.x
       - name: Setup tflint
         uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: v0.50.3
       - name: Checking Terraform formatting style
         run: |
           cd terraform
