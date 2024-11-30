@@ -1,0 +1,14 @@
+rules:
+  custom:
+    missing-metadata:
+      level: error
+      ignore:
+        files:
+          - "*_test.rego"
+  idiomatic:
+    directory-package-mismatch:
+      exclude-test-suffix: false
+  style:
+    line-length:
+      level: error
+      non-breakable-word-threshold: 80
