@@ -1,0 +1,36 @@
+name: Check and validate Rego code
+
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  terraform:
+    name: Check and validate Rego code
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup OPA
+        uses: open-policy-agent/setup-opa@v2
+      - name: Setup Regal
+        uses: StyraInc/setup-regal@v1
+      - name: Checking Rego formatting style
+        run: |
+          cd rego
+          make check-fmt
+      - name: Linting Rego code
+        run: |
+          cd rego
+          make lint
+      - name: Testing Rego code
+        run: |
+          cd rego
+          make test
+      - name: Checking Rego code coverage
+        run: |
+          cd rego
+          make coverage
