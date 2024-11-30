@@ -19,7 +19,7 @@ import input as tfstate
 #  Walk the Terraform state and flatten all Terraform resources.
 #
 #  Please note that the Terraform resources in the state can be Terraform
-#  `resource` or `data` based on their `kind`:
+#  `resource` or `data` based on their `mode`:
 #   - `resource`: the resource of kind "managed"
 #   - `data`: the data resource of kind "data"
 # scope: rule
