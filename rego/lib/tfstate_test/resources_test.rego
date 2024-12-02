@@ -29,9 +29,11 @@ test_managed_resources_count_real_tfstate if {
 }
 
 test_all_resources_count_real_tfstate if {
-	resources := tfstate.resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
-	data_resources := tfstate.data_resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
-	managed_resources := tfstate.managed_resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+	testdata := data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+
+	resources := tfstate.resources with input as testdata
+	data_resources := tfstate.data_resources with input as testdata
+	managed_resources := tfstate.managed_resources with input as testdata
 
 	count(resources) == count(data_resources) + count(managed_resources)
 }

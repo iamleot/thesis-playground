@@ -12,8 +12,3 @@ rules:
     line-length:
       level: error
       non-breakable-word-threshold: 80
-      ignore:
-        files:
-          # Either violate `line-length` (if we format it) or `opa-fmt` if we
-          # split the long line.
-          - "lib/tfstate_test/resources_test.rego"
