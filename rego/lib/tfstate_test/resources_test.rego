@@ -9,18 +9,29 @@ test_resources_count_empty if {
 }
 
 test_resources_count_real_tfstate if {
+	count(tfstate.resources) == 70 with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+}
+
+test_data_resources_count_empty if {
+	count(tfstate.data_resources) == 0 with input as {}
+}
+
+test_data_resources_count_real_tfstate if {
+	count(tfstate.data_resources) == 12 with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+}
+
+test_managed_resources_count_empty if {
+	count(tfstate.managed_resources) == 0 with input as {}
+}
+
+test_managed_resources_count_real_tfstate if {
+	count(tfstate.managed_resources) == 58 with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+}
+
+test_all_resources_count_real_tfstate if {
 	resources := tfstate.resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
-	count(resources) == 70
+	data_resources := tfstate.data_resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
+	managed_resources := tfstate.managed_resources with input as data.lib.tfstate_test.testdata["eks-attach-policy-to-nodes"]
 
-	# Check actual Terraform resources, i.e. the `resource` one that are
-	# also showed via `plan` and `apply` output.
-	managed_resources := [resource | some resource in resources; resource.mode == "managed"]
-	count(managed_resources) == 58
-
-	# Check actual Terraform data (resources), i.e. the `data` one that are
-	# not showed via `plan` and `apply` output.
-	data_resources := [resource | some resource in resources; resource.mode == "data"]
-	count(data_resources) == 12
-
-	count(resources) == count(managed_resources) + count(data_resources)
+	count(resources) == count(data_resources) + count(managed_resources)
 }
