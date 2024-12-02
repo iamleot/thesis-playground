@@ -27,3 +27,21 @@ resources contains resource if {
 	[_, value] := walk(tfstate)
 	some resource in value.resources
 }
+
+# METADATA
+# description: |
+#  Return data resources, AKA actual `data` in Terraform.
+# scope: rule
+data_resources contains resource if {
+	some resource in resources
+	resource.mode == "data"
+}
+
+# METADATA
+# description: |
+#  Return managed resources, AKA actual `resource` in Terraform.
+# scope: rule
+managed_resources contains resource if {
+	some resource in resources
+	resource.mode == "managed"
+}
