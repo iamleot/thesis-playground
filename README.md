@@ -3,6 +3,30 @@
 Playground for master thesis containing code, documentation and examples to
 explore policy as code.
 
+## Rego
+
+In `rego` directory there are OPA policies for Terraform state.
+
+A `Makefile` is provided to ease CI (continuous integration) checking,
+linting and testing Rego code. It also ensures code coverage of 80%.
+
+Rego code is continously tested via
+`.github/workflows/rego.yaml` GitHub Actions workflow.
+
+To use the OPA CLI interactively against a Terraform state
+`<tfstate.json>` the following can be handy:
+
+```
+$ opa run . repl.input:<tfstate.json> 
+OPA 0.70.0 (commit , built at )
+
+Run 'help' to see a list of commands and check for updates.
+
+> import data.lib.tfstate
+> tfstate.resources 
+[...]
+```
+
 ## Terraform
 
 In `terraform` directory there are several
