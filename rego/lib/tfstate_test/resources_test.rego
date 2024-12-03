@@ -3,9 +3,38 @@ package lib.tfstate_test
 import rego.v1
 
 import data.lib.tfstate
+import data.lib.tfstate.fixtures
 
 test_resources_count_empty if {
 	count(tfstate.resources) == 0 with input as {}
+}
+
+test_resources_count_tfstate_base if {
+	count(tfstate.resources) == 0 with input as fixtures.tfstate_base
+}
+
+test_resources_count_tfstate_root if {
+	count(tfstate.resources) == 2 with input as fixtures.tfstate_root
+}
+
+test_data_resources_count_tfstate_root if {
+	count(tfstate.data_resources) == 0 with input as fixtures.tfstate_root
+}
+
+test_managed_resources_count_tfstate_root if {
+	count(tfstate.managed_resources) == 2 with input as fixtures.tfstate_root
+}
+
+test_resources_count_tfstate_root_child if {
+	count(tfstate.resources) == 5 with input as fixtures.tfstate_root_child
+}
+
+test_data_resources_count_tfstate_root_child if {
+	count(tfstate.data_resources) == 1 with input as fixtures.tfstate_root_child
+}
+
+test_managed_resources_count_tfstate_root_child if {
+	count(tfstate.managed_resources) == 4 with input as fixtures.tfstate_root_child
 }
 
 test_resources_count_real_tfstate if {
