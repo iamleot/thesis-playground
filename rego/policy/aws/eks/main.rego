@@ -36,6 +36,8 @@ node_roles := [role |
 #    ref: https://docs.aws.amazon.com/eks/latest/userguide/create-node-role.html
 #  - description: aws_eks_node_group resource, hashicorp/aws Terraform provider
 #    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_node_group
+#  - description: Identities and Credentials for EKS pods Recommendations, Amazon EKS Best Practices Guide
+#    ref: https://docs.aws.amazon.com/eks/latest/best-practices/identity-and-access-management.html#_identities_and_credentials_for_eks_pods_recommendations
 # scope: rule
 deny_extra_policies_in_node_roles contains msg if {
 	some node_role in node_roles
