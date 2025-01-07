@@ -5,6 +5,8 @@ name: Check and validate Rego code
     branches:
       - main
   pull_request:
+  schedule:
+    - cron: '18 3 * * 3'
 
 jobs:
   terraform:
