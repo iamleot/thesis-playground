@@ -8,6 +8,10 @@ rules:
   idiomatic:
     directory-package-mismatch:
       exclude-test-suffix: false
+  imports:
+    unresolved-reference:
+      except-paths:
+        - data.lib.tfstate_test.testdata
   style:
     line-length:
       level: error
