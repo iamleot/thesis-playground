@@ -40,7 +40,7 @@ Moto can be started in server-mode using
 [Docker](https://www.docker.com/), e.g.:
 
 ```
-$ docker run --detach --publish 4566:5000 --volume "${PWD}/config/amis.json:/amis.json" --env MOTO_AMIS_PATH=/amis.json --env MOTO_IAM_LOAD_MANAGED_POLICIES=true --rm motoserver/moto:5.1.1
+$ docker run --detach --publish 4566:5000 --volume "${PWD}/config/amis.json:/amis.json" --env MOTO_AMIS_PATH=/amis.json --env MOTO_IAM_LOAD_MANAGED_POLICIES=true --rm motoserver/moto:5.1.6
 c48475b85c7708f218486e25bc8658281ec1ff2e0a01c0729764d71f3fdb2463
 ```
 
