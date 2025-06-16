@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Start moto container
         run: |
-          docker run --detach --name moto --publish 4566:5000 --volume "${PWD}/config/amis.json:/amis.json" --env MOTO_AMIS_PATH=/amis.json --env MOTO_IAM_LOAD_MANAGED_POLICIES=true --rm motoserver/moto:5.1.1
+          docker run --detach --name moto --publish 4566:5000 --volume "${PWD}/config/amis.json:/amis.json" --env MOTO_AMIS_PATH=/amis.json --env MOTO_IAM_LOAD_MANAGED_POLICIES=true --rm motoserver/moto:5.1.6
       - name: Wait for moto container to be ready
         timeout-minutes: 1
         run: |
