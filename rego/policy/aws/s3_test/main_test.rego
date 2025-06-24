@@ -4,6 +4,60 @@ import rego.v1
 
 import data.policy.aws.s3
 
+test_deny_bucket_without_public_access_block_match if {
+	resources := [{
+		"type": "aws_s3_bucket",
+		"values": {
+			"bucket": "fake_bucket",
+			"id": "fake_bucket",
+		},
+	}]
+
+	s3.deny_bucket_without_public_access_block with data.lib.tfstate.managed_resources as resources
+}
+
+test_deny_bucket_without_public_access_block_different_match if {
+	resources := [
+		{
+			"type": "aws_s3_bucket",
+			"values": {
+				"bucket": "fake_bucket",
+				"id": "fake_bucket",
+			},
+		},
+		{
+			"type": "aws_s3_bucket_public_access_block",
+			"values": {
+				"bucket": "different_fake_bucket",
+				"id": "different_fake_bucket",
+			},
+		},
+	]
+
+	s3.deny_bucket_without_public_access_block with data.lib.tfstate.managed_resources as resources
+}
+
+test_deny_bucket_without_public_access_block_mismatch if {
+	resources := [
+		{
+			"type": "aws_s3_bucket",
+			"values": {
+				"bucket": "fake_bucket",
+				"id": "fake_bucket",
+			},
+		},
+		{
+			"type": "aws_s3_bucket_public_access_block",
+			"values": {
+				"bucket": "fake_bucket",
+				"id": "fake_bucket",
+			},
+		},
+	]
+
+	count(s3.deny_bucket_without_public_access_block) == 0 with data.lib.tfstate.managed_resources as resources
+}
+
 test_deny_no_block_public_acls_match if {
 	resources := [{
 		"type": "aws_s3_bucket_public_access_block",

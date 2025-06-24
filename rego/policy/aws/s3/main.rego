@@ -10,6 +10,33 @@ import rego.v1
 import data.lib.tfstate
 
 # METADATA
+# title: Deny bucket without public access block
+# description: |
+#  S3 bucket should have an associated public access block in order to keep it
+#  private.
+# related_resources:
+#  - description: Blocking public access to your Amazon S3 storage
+#    ref: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
+#  - description: aws_s3_bucket resource, hashicorp/aws Terraform provider
+#    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
+#  - description: aws_s3_bucket_public_access_block resource, hashicorp/aws Terraform provider
+#    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
+# scope: rule
+deny_bucket_without_public_access_block contains msg if {
+	some bucket in tfstate.managed_resources
+	bucket.type == "aws_s3_bucket"
+	count([bucket_public_access_block |
+		some bucket_public_access_block in tfstate.managed_resources
+		bucket_public_access_block.type == "aws_s3_bucket_public_access_block"
+		bucket.values.id == bucket_public_access_block.values.id
+	]) == 0
+	msg := sprintf(
+		"`aws_s3_bucket` `%v` should have an associated `aws_s3_bucket_public_access_block`",
+		[bucket.values.id],
+	)
+}
+
+# METADATA
 # title: Deny S3 bucket without block public ACLs
 # description: |
 #  In order to keep the S3 bucket private, public ACLs should be blocked.
