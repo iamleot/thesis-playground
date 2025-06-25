@@ -21,6 +21,10 @@ import data.lib.tfstate
 #    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 #  - description: aws_s3_bucket_public_access_block resource, hashicorp/aws Terraform provider
 #    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
+#  - description: Specify Public Access Block - Trivy
+#    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0094/
+#  - description: S3 Bucket does not have public access blocks - Checkov
+#    ref: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/s3-bucket-should-have-public-access-blocks-defaults-to-false-if-the-public-access-block-is-not-attached
 # scope: rule
 deny_bucket_without_public_access_block contains msg if {
 	some bucket in tfstate.managed_resources
@@ -49,6 +53,8 @@ deny_bucket_without_public_access_block contains msg if {
 #    ref: https://docs.kics.io/latest/queries/terraform-queries/aws/d0cc8694-fcad-43ff-ac86-32331d7e867f/
 #  - description: Block Public Acls - Trivy
 #    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0086/
+#  - description: AWS S3 Buckets has block public access setting disabled - Checkov
+#    ref: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-19
 # scope: rule
 deny_no_block_public_acls contains msg if {
 	some resource in tfstate.managed_resources
@@ -75,6 +81,8 @@ deny_no_block_public_acls contains msg if {
 #    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
 #  - description: Block Public Policy - Trivy
 #    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0087/
+#  - description: AWS S3 Bucket BlockPublicPolicy is not set to True - Checkov
+#    ref: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-20
 # scope: rule
 deny_no_block_public_policy contains msg if {
 	some resource in tfstate.managed_resources
@@ -103,6 +111,8 @@ deny_no_block_public_policy contains msg if {
 #    ref: https://docs.kics.io/latest/queries/terraform-queries/aws/4fa66806-0dd9-4f8d-9480-3174d39c7c91/
 #  - description: Ignore Public Acls - Trivy
 #    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0091/
+#  - description: AWS S3 bucket IgnorePublicAcls is not set to True - Checkov
+#    ref: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-21
 # scope: rule
 deny_no_ignore_public_acls contains msg if {
 	some resource in tfstate.managed_resources
@@ -131,6 +141,8 @@ deny_no_ignore_public_acls contains msg if {
 #    ref: https://docs.kics.io/latest/queries/terraform-queries/aws/1ec253ab-c220-4d63-b2de-5b40e0af9293/
 #  - description: No Public Buckets - Trivy
 #    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0093/
+#  - description: AWS S3 bucket RestrictPublicBucket is not set to True - Checkov
+#    ref: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/s3-policies/bc-aws-s3-22
 # scope: rule
 deny_no_restrict_public_buckets contains msg if {
 	some resource in tfstate.managed_resources
