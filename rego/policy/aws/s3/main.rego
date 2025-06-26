@@ -79,6 +79,8 @@ deny_no_block_public_acls contains msg if {
 #    ref: https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html
 #  - description: aws_s3_bucket_public_access_block resource, hashicorp/aws Terraform provider
 #    ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block
+#  - description: S3 Bucket Allows Public Policy - KICS
+#    ref: https://docs.kics.io/latest/queries/terraform-queries/aws/1a4bc881-9f69-4d44-8c9a-d37d08f54c50/
 #  - description: Block Public Policy - Trivy
 #    ref: https://avd.aquasec.com/misconfig/aws/s3/avd-aws-0087/
 #  - description: AWS S3 Bucket BlockPublicPolicy is not set to True - Checkov
