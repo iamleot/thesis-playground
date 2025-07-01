@@ -18,7 +18,7 @@ To use the OPA CLI interactively against a Terraform state
 
 ```
 $ opa run . repl.input:<tfstate.json> 
-OPA 0.70.0 (commit , built at )
+OPA 1.5.1 (commit , built at )
 
 Run 'help' to see a list of commands and check for updates.
 
