@@ -1,4 +1,5 @@
 name: Check and validate Rego code
+permissions: {}
 
 'on':
   push:
